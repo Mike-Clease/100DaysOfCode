@@ -9,18 +9,35 @@ def step(ttl):
 scn = Screen()
 scn.setup(width=500, height=400)
 
-colour_list = ['red', 'green', 'blue', 'purple', 'yellow', 'orange']
+colours = ['red', 'green', 'blue', 'purple', 'yellow', 'orange']
+start = -75
+turtles = []
+race_is_on = False
 
-start_y = -75
-
-for colour in colour_list:
-    ttl = Turtle(shape='turtle')
-    ttl.color(colour)
-    ttl.penup()
-    ttl.goto(-250, start_y)
-    start_y += 30
+for colour in colours:
+    new_turtle = Turtle(shape='turtle')
+    new_turtle.color(colour)
+    new_turtle.penup()
+    new_turtle.goto(-250, start)
+    start += 30
+    turtles.append(new_turtle)
 
 bet = scn.textinput(title='Make your bet',
                     prompt='Which turtle will win the race?')
+
+if bet:
+    race_is_on = True
+
+while race_is_on:
+    for turtle in turtles:
+        if turtle.xcor() >= 230:
+            winner_colour = turtle.pencolor()
+            race_is_on = False
+            if winner_colour == bet:
+                print(f"You win! The {winner_colour} turtle came first!")
+            else:
+                print(f"You lost! The {winner_colour} turtle came first!")
+            break
+        step(turtle)
 
 scn.exitonclick()
