@@ -4,42 +4,40 @@ import random
 
 def step(ttl):
     ttl.forward(random.randint(0, 10))
-    
-    
-# class racer(Turtle):
-    
-#     def __init__(self, x_pos, y_pos, name, colour):
-#         self.position = self.goto(x_pos, y_pos)
-#         self.name = name
-#         self.colour = colour
-#         self.shape = self.shape('Turtle')
+
 
 scn = Screen()
 scn.setup(width=500, height=400)
 
-red = Turtle(shape='turtle')
-green = Turtle(shape='turtle')
-blue = Turtle(shape='turtle')
-purple = Turtle(shape='turtle')
-yellow = Turtle(shape='turtle')
-orange = Turtle(shape='turtle')
+colours = ['red', 'green', 'blue', 'purple', 'yellow', 'orange']
+start = -75
+turtles = []
+race_is_on = False
 
-red.penup()
-green.penup()
-blue.penup()
-purple.penup()
-yellow.penup()
-orange.penup()
+for colour in colours:
+    new_turtle = Turtle(shape='turtle')
+    new_turtle.color(colour)
+    new_turtle.penup()
+    new_turtle.goto(-250, start)
+    start += 30
+    turtles.append(new_turtle)
 
-red.goto(-220, 15)
-green.goto(-220, 45)
-blue.goto(-220, 75)
-purple.goto(-220, -15)
-yellow.goto(-220, -45)
-orange.goto(-220, -75)
+bet = scn.textinput(title='Make your bet',
+                    prompt='Which turtle will win the race?')
 
+if bet:
+    race_is_on = True
 
-
-bet = scn.textinput(title='Make your bet', prompt='Which turtle will win the race?')
+while race_is_on:
+    for turtle in turtles:
+        if turtle.xcor() >= 230:
+            winner_colour = turtle.pencolor()
+            race_is_on = False
+            if winner_colour == bet:
+                print(f"You win! The {winner_colour} turtle came first!")
+            else:
+                print(f"You lost! The {winner_colour} turtle came first!")
+            break
+        step(turtle)
 
 scn.exitonclick()
