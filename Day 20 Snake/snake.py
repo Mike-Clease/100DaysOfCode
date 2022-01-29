@@ -1,4 +1,3 @@
-from pickletools import UP_TO_NEWLINE
 from turtle import Turtle
 
 START_POS = [(0, 0), (-20, 0), (-40, 0)]
@@ -66,4 +65,4 @@ class Snake(Turtle):
     def grow(self):
         # add new segment to the snake
         last_seg = self.segments[-1].position()
-        self.add_segment(last_seg)   
+        self.add_segment(last_seg)  
