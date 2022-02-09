@@ -23,17 +23,6 @@ screen.onkey(right_paddle.down, "Down")
 game_is_on = True
 
 
-def continue_playing():
-    cont = input("Carry on playing? Y/N").upper()
-    global game_is_on, ball
-    if cont == 'Y':
-        ball = Ball()
-    else:
-        game_is_on = False
-
-    return game_is_on, ball
-
-
 while game_is_on:
     screen.update()
     time.sleep(0.05)
@@ -44,22 +33,22 @@ while game_is_on:
 
     # right paddle collision
 
-    if ball.xcor() >= 360 and ball.distance(right_paddle) <= 50:
+    if ball.xcor() >= 370 and ball.distance(right_paddle) <= 50:
+        print(f"Hit Paddle. Heading: {ball.heading()}")
         ball.ricochet()
-        print("Hit Paddle")
 
     # left paddle collision
 
-    if ball.xcor() <= -360 and ball.distance(left_paddle) <= 50:
+    if ball.xcor() <= -370 and ball.distance(left_paddle) <= 50:
+        print(f"Hit Paddle. Heading: {ball.heading()}")
         ball.ricochet()
-        print("Hit Paddle")
 
     if ball.xcor() < -400:
         scoreboard.increase_score('Player 2')
-        continue_playing()
+        ball.reset()
 
     if ball.xcor() > 400:
         scoreboard.increase_score('Player 1')
-        continue_playing()
+        ball.reset()
 
 screen.exitonclick()
