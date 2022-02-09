@@ -33,11 +33,13 @@ while game_is_on:
         board.increase_score()
         snake.grow()
 
-    # Detech wall collision
-    # if snake.head.xcor() > 300 or snake.head.xcor() < -300 \
-    #     or snake.head.ycor() > 300 or snake.head.ycor() < -300:
-    #     game_is_on = False
-    #     board.game_over()
+    x_out = snake.head.xcor() > 300 or snake.head.xcor() < -300
+
+    y_out = snake.head.ycor() > 300 or snake.head.ycor() < -300
+
+    if x_out or y_out:
+        game_is_on = False
+        board.game_over()
 
     # Detect tail collision
     # if snake.head.position() game over
