@@ -4,8 +4,8 @@ from ball import Ball
 from scoreboard import Scoreboard
 
 screen = Screen()
-screen.bgcolor('black')
-screen.title('Pong')
+screen.bgcolor("black")
+screen.title("Pong")
 screen.setup(width=800, height=600)
 screen.tracer(0)
 
@@ -34,21 +34,19 @@ while game_is_on:
     # right paddle collision
 
     if ball.xcor() >= 370 and ball.distance(right_paddle) <= 50:
-        print(f"Hit Paddle. Heading: {ball.heading()}")
         ball.ricochet()
 
     # left paddle collision
 
     if ball.xcor() <= -370 and ball.distance(left_paddle) <= 50:
-        print(f"Hit Paddle. Heading: {ball.heading()}")
         ball.ricochet()
 
     if ball.xcor() < -400:
-        scoreboard.increase_score('Player 2')
+        scoreboard.increase_score("Player 2")
         ball.reset()
 
     if ball.xcor() > 400:
-        scoreboard.increase_score('Player 1')
+        scoreboard.increase_score("Player 1")
         ball.reset()
 
 screen.exitonclick()
