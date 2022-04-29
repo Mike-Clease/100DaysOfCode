@@ -1,0 +1,14 @@
+#Deriving the latest base image
+FROM python:latest
+
+
+#Labels as key value pair
+LABEL Maintainer="mike.clease"
+
+WORKDIR /usr/app/src
+
+COPY car.py ./
+COPY main.py ./
+COPY player.py ./
+
+CMD [ "python", "./main.py"]

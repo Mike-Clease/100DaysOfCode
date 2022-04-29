@@ -9,7 +9,6 @@ LEFT = 180
 
 
 class Snake(Turtle):
-
     def __init__(self):
         super().__init__()
         self.segments = []
@@ -21,9 +20,9 @@ class Snake(Turtle):
             self.add_segment(pos)
 
     def move(self):
-        for seg in range(len(self.segments)-1, 0, -1):
-            new_x = self.segments[seg-1].xcor()
-            new_y = self.segments[seg-1].ycor()
+        for seg in range(len(self.segments) - 1, 0, -1):
+            new_x = self.segments[seg - 1].xcor()
+            new_y = self.segments[seg - 1].ycor()
             self.segments[seg].goto(new_x, new_y)
         self.head.forward(MOVE_DIST)
 
@@ -56,13 +55,13 @@ class Snake(Turtle):
             pass
 
     def add_segment(self, position):
-        segment = Turtle(shape='square')
+        segment = Turtle(shape="square")
         segment.penup()
         segment.goto(position)
-        segment.color('white')
+        segment.color("white")
         self.segments.append(segment)
 
     def grow(self):
         # add new segment to the snake
         last_seg = self.segments[-1].position()
-        self.add_segment(last_seg)  
+        self.add_segment(last_seg)

@@ -7,7 +7,7 @@ FONT = ("Arial", "24", "normal")
 class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
-        self.score = 0
+        self.score = 1
         self.shape("classic")
         self.color("white")
         self.hideturtle()
@@ -16,7 +16,7 @@ class Scoreboard(Turtle):
 
     def update(self):
         self.clear()
-        self.write(f"Score: {self.score}", align=ALIGNMENT, font=FONT)
+        self.write(f"Level: {self.score}", align=ALIGNMENT, font=FONT)
 
     def increase_score(self):
         self.score += 1
