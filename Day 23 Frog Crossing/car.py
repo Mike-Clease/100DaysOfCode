@@ -10,6 +10,7 @@ class Road:
     def __init__(self):
         self.cars = []
         self.pop_road()
+        self.level = 1
 
     def pop_road(self):
         for lane in LANES:
